@@ -1,9 +1,12 @@
 var React = require('react')
+var ReactDOM = require('react-dom');
+
 var SelectBox = React.createFactory(require('../lib/select-box'))
 
 var div = React.createElement.bind(null,'div')
 var option = React.createElement.bind(null,'option')
 var h1 = React.createElement.bind(null,'h1')
+var button = React.createElement.bind(null,'button')
 
 var Example = React.createFactory(React.createClass({displayName: 'Example',
   getInitialState: function () {
@@ -42,6 +45,7 @@ var Example = React.createFactory(React.createClass({displayName: 'Example',
             label: "Favorite Colors",
             onChange: this.handleMultiChange,
             value: this.state.colors,
+            name: 'foo',
             multiple: true
           },
           option({value: 'red'}, 'Red'),
@@ -50,10 +54,11 @@ var Example = React.createFactory(React.createClass({displayName: 'Example',
           option({value: 'black'}, 'Black'),
           option({value: 'orange'}, 'Orange'),
           option({value: 'greenish'}, 'Light greenish with a little bit of yellow')
-        )
+        ),
+        button(null, "Submit")
       )
     )
   }
 }))
 
-React.render(Example(null), document.body)
+ReactDOM.render(Example(null), document.getElementById('target'))
